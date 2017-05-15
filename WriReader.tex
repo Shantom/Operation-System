@@ -1,0 +1,93 @@
+\documentclass{article}
+
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\geometry{a4paper,centering,scale=0.8}
+
+\begin{document}
+\title{Reader Writer Problem}
+\author{史柠玮-2014211283}
+\date{\today}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{实验目的}
+深刻理解读者写者问题
+
+\section{实验要求}
+
+\subsection{基本要求}
+
+创建一个包含n 个线程的控制进程。用这n 个线程来表示n
+个读者或写者。每个线程按相应测试数据文件的要求，进行读写操作。请用信号量
+机制分别实现读者优先和写者优先的读者-写者问题。
+读者-写者问题的读写操作限制：
+\begin{enumerate}
+\item 写-写互斥;
+\item 读-写互斥;
+\item 读-读允许;
+\end{enumerate}
+
+
+\subsection{附加限制}
+\begin{itemize}
+\item 读者优先的附加限制：如果一个读者申请进行读操作时已有另一读者正在进行读操作，
+则该读者可直接开始读操作。
+\item 写者优先的附加限制：如果一个读者申请进行读操作时已有另一写者在等待访问共享资
+源，则该读者必须等到没有写者处于等待状态后才能开始读操作。
+\end{itemize}
+
+
+
+\subsection{运行结果显示要求}
+
+要求在每个线程创建、发出读写操作申请、开始读写操作和结束读
+写操作时分别显示一行提示信息，以确信所有处理都遵守相应的读写操作限制。
+
+\subsection{测试数据文件格式}
+
+测试数据文件包括n 行测试数据，分别描述创建的n 个线程是读者还是写者，以及读写
+操作的开始时间和持续时间。每行测试数据包括四个字段，各字段间用空格分隔。
+
+\begin{enumerate}
+\item 第一字段为一个正整数，表示线程序号.
+\item 第二字段表示相应线程角色，R 表示读者是，W 表示写者。
+\item 第三字段为一个正数，表示读写操作的开始时间。线程创建后，延时相应时间（单位为秒）
+后发出对共享资源的读写申请。
+\item 第四字段为一个正数，表示读写操作的持续时间。当线程读写申请成功后，
+  开始对共享资源的读写操作，该操作持续相应时间后结束，并释放共享资源.
+\end{enumerate}
+
+下面是一个测试数据文件的例子：
+\begin{center}
+  1 R 3 5\\
+2 W 4 5\\
+3 R 5 2\\
+4 R 6 5\\
+5 W 5.1 3
+\end{center}
+
+\section{实验环境}
+\begin{itemize}
+\item Fedora 25 64位
+\item Pycharm (IDE)
+\item Python 3.5
+\end{itemize}
+
+
+\section{实验结果}
+
+注\footnote{代码见附件}
+
+\begin{itemize}
+\item 读者优先:\\
+  \includegraphics[width=15cm]{1.png}
+\item 写者优先:\\
+  \includegraphics[width=15cm]{2.png}
+\end{itemize}
+
+\end{document}
